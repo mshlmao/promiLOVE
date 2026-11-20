@@ -1,10 +1,14 @@
+import 'package:flutter/services.dart'; // Disables phone rotation
 import 'package:material_ui/material_ui.dart';
-import 'package:cupertino_ui/cupertino_ui.dart';
+import 'package:cupertino_ui/cupertino_ui.dart'; // The cool iphone page transition
 
-import 'add_drink_screen.dart';
+import 'add_drink_page.dart';
+import "settings_page.dart";
 
 const double addButtonSize = 80;
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);  // No phone rotation
   runApp(const MyApp());
 }
 
@@ -51,11 +55,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         title: Text(widget.title),
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        actions: [IconButton(
+          onPressed: () => showSettingsPage(context),
+          icon: Icon(Icons.settings_rounded), iconSize: 28,)],
         toolbarHeight: 48.0,
-        shadowColor: Theme.of(context).shadowColor,
-        elevation: 6.0
+        shadowColor: Theme.of(context).colorScheme.shadow,
+        elevation: 4.0
       ),
       body: Center(
         child: Column(
@@ -70,9 +77,9 @@ class _HomeScreenState extends State<HomeScreen> {
         height: addButtonSize,
         child: FloatingActionButton(
           shape: CircleBorder(),
-          onPressed: () => showAddDrinkScreen(context),
-          tooltip: 'Dodaj',
-          elevation: 6,
+          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+          onPressed: () => showAddDrinkPage(context),
+          elevation: 4.0,
           child: Icon(Icons.add_rounded, size: addButtonSize/2),
         )
       )

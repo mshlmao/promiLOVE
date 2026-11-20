@@ -1,6 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 
-void showAddDrinkScreen(BuildContext context){
+void showAddDrinkPage(BuildContext context){
   Navigator.of(context).push(
     MaterialPageRoute(
        builder: (context) => Scaffold(
@@ -9,8 +9,9 @@ void showAddDrinkScreen(BuildContext context){
           titleSpacing: 0.0,
           backgroundColor: Theme.of(context).colorScheme.primaryContainer,
           toolbarHeight: 48.0,
-          shadowColor: Theme.of(context).shadowColor,
-          elevation: 6.0
+          shadowColor: Theme.of(context).colorScheme.shadow,
+          elevation: 4.0,
+          surfaceTintColor: Color(0x00000000),
         ),
         body: Center(
           child:  Column(
